@@ -23,7 +23,7 @@
                             @foreach($languages as $lang)
                                 <tr>
                                     <td>
-                                        <button class="btn btn-info btn-sm">{{ $lang->language_code }}</button>
+                                        <a href="{{ route('languages.translations.index', $lang->language_code) }}" class="btn btn-info btn-sm">{{ $lang->language_code }}</a>
                                     </td>
                                     <td scope="row">
                                         <div class="language-name">

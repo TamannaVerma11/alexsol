@@ -9,6 +9,7 @@
         "binarytorch/larecipe": "^2.6",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.5",
+        "joedixon/laravel-translation": "^2.2",
         "laravel/fortify": "^1.16",
         "laravel/framework": "^8.75",
         "laravel/sanctum": "^2.11",

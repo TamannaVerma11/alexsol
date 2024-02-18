@@ -40,21 +40,38 @@ class LanguageController extends Controller
      */
     public function store($langcode, LanguageRequest $request) : JsonResponse
     {
-        $response = Http::accept('application/json')->post(route('api.language.create'), $request->all());
-
-        $res = $response->json();
-        if ($response->successful()) {
-
-            return response()->json([
-                "status" => true,
-                "redirect" => route("language.index", $langcode)
-            ]);
-        }
-        return response()->json([
-            "status" => false,
-            "message" => $res['message'],
-            'errors' =>  $res['errors'] ?? ''
+      // dd(route('api.language.create'),json_encode($request->all(),true)) ;
+        
+      if(!empty($request->input('language_id'))){
+        $language = Language::find($request->input('language_id'));
+        $language->name = $request->input('name');
+        $language->active = $request->input('active');
+        $language->lang_default = $request->input('lang_default');
+        $language->save();
+    }
+    else {
+        $language = Language::create([
+            'name' => $request->input('name'),
+            'language_code' => $request->input('language_code'),
+            'active' => 1,
+            'lang_default' => 0
         ]);
+    }
+
+
+
+    if($language)
+      return response()->json([
+        "status" => true,
+        "redirect" => route("language.index", $langcode)
+    ]);
+    else
+        return response()->json([
+            'profile' => '',
+            'message' => 'Cannot save data. Please try again later. ',
+            'errors' => ''
+        ], 500);
+        
     }
 
     /**

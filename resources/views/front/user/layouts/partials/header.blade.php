@@ -116,7 +116,7 @@
 
             </div>
             <div class="col pppropic">
-                @if (auth()->check() && $user->user_type == 'company_owner')
+                @if (auth()->check() && @$user->user_type == 'company_owner')
                     <div class="propic">
                         <span class="notification"><i class="fa-solid fa-bell"></i> <span
                                 class="badge badge-warning">{{ $data_pedning_tickets->count() }}</span></span>
@@ -201,8 +201,8 @@
                         </div>
                     </div>
                 @elseif( auth()->check() && (
-                            $user->user_type == 'admin_super' ||
-                            $user->user_type == 'admin_support') )
+                            @$user->user_type == 'admin_super' ||
+                            @$user->user_type == 'admin_support') )
                     <div class="propic">
                         <span class="notification"><i class="fa-solid fa-bell"></i> <span
                                 class="badge badge-warning">{{ $data_pedning_tickets->count() }}</span></span>
@@ -279,7 +279,7 @@
                             </ul>
                         </div>
                     </div>
-                @elseif ($user && $user->user_type == 'consultant')
+                @elseif (@$user && @$user->user_type == 'consultant')
                     <div class="propic">
                         <span class="notification"><i class="fa-solid fa-bell"></i> <span class="badge badge-warning">{{ $data_pedning_tickets->count() }}</span></span>
                         <span class="dropdown">
@@ -344,7 +344,7 @@
                         </div>
                     </div>
 
-                @elseif ($user && $user->user_type == 'user')
+                @elseif (@$user && @$user->user_type == 'user')
                     <div class="propic">
                         <span class="notification"><i class="fa-solid fa-bell"></i> <span
                             class="badge badge-warning">{{ $data_pedning_tickets->count() }}</span></span>
@@ -446,8 +446,8 @@
                     <select id="" class="form-control form-control-sm" onchange="changeLanguage(this.value)">
                         @forelse ($languages as $language)
                             <option
-                                {{ app()->getLocale() ? (app()->getLocale() == $language->language_code ? 'selected' : '') : '' }}
-                                value="{{ $language->language_code }}">{{ $language->name }}
+                                {{ app()->getLocale() ? (app()->getLocale() == @$language->language_code ? 'selected' : '') : '' }}
+                                value="{{ @$language->language_code }}">{{ @$language->name }}
                             </option>
                         @empty
                         @endforelse

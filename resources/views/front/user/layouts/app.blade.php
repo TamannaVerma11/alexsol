@@ -1,12 +1,12 @@
 <!doctype html>
 <html id="html" lang="{{ app()->getLocale() }}" data-layout="main" data-theme="main">
-
+<link rel="stylesheet" href="{{ asset('/vendor/translation/css/main.css') }}">
 <head>
     @include('front.user.layouts.partials.head')
 </head>
 
-<body id="translation" data-{{$language->id}}="{{$language->language_code}}">
-
+<body id="translation" data-{{@$language->id}}="{{@ $language->language_code}}">
+<div id="app">
     <div id="translation">
         <div class="header_logo">
             <a href="javascipt:void(0);" class="logo">
@@ -58,7 +58,9 @@
             </div>
         </div>
     </div>
+</div>
 
 </body>
+<script src="{{ asset('/vendor/translation/js/app.js') }}"></script>
 
 </html>
